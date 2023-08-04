@@ -8,6 +8,10 @@ app = Flask(__name__) # __name__ means this current file which in this case is m
 def home():       # when entering the default page, this function will activate
     return render_template("home.html")
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
 if __name__ == "__main__":  # When ran Python assigns "__main__" as the name of the script
     app.run(debug=True)     # This runs the application, debug=True lets us see bugs/errors on the webpage
 
