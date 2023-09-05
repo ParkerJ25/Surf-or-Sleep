@@ -29,6 +29,12 @@ def logout():
     logout_user()
     return redirect(url_for('auth.login'))
 
+@auth.route('/user_pref', methods=['GET', 'POST'])
+def user_pref():
+    if request.method == 'POST':
+        return redirect(url_for('views.home'))
+    return render_template("user_pref.html", user=current_user)
+
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
@@ -52,7 +58,7 @@ def sign_up():
             new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
-            login_user(user, remember=True)
+            login_user(new_user, remember=True)
             flash('Account created!', category='success')
-            return redirect(url_for('views.home'))
+            return redirect(url_for('auth.user_pref'))
     return render_template("sign_up.html", user=current_user)
