@@ -1,20 +1,7 @@
-from flask import Flask, render_template # importing flask smd creating a flask web server 
-                                         # importing render template lets Flask look for HTML files
-                                         # in the templates folder then it renders them 
-app = Flask(__name__) # __name__ means this current file which in this case is main.py this 
-                      # will represent the flask application
+from website import create_app # since our website folder is now a package we can import it using the name website and by default it will run all of the stuff in the init.py file 
 
-@app.route("/")   # this is the default page for our website 
-def home():       # when entering the default page, this function will activate
-    return render_template("home.html")
+app = create_app()
 
-@app.route("/about")
-def about():
-    return render_template("about.html")
-
-if __name__ == "__main__":  # When ran Python assigns "__main__" as the name of the script
-    app.run(debug=True)     # This runs the application, debug=True lets us see bugs/errors on the webpage
-
-
-
-
+if __name__ == '__main__': # only if we run this file not if we import it will it run the app.run(debug=True) line of code. We want this because if we imported the main.py file it would run and we only want it to run when we run this file directly
+    app.run(debug=True)  # this will run our flask application, start a web server, and debug=true means any change in the python code will rerun the web server
+# We are importing website folder as a package(which we can do because we have our __init__.py file, grab the create app function from init.py and use that to create an application and run it)
