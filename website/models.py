@@ -7,3 +7,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     first_name = db.Column(db.String(150))
+    min_wave_height = db.Column(db.Integer)
+    max_wave_height = db.Column(db.Integer)
+    max_wind_mph = db.Column(db.Integer)
+    min_water_temp = db.Column(db.Integer)
+

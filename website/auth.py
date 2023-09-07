@@ -29,11 +29,11 @@ def logout():
     logout_user()
     return redirect(url_for('auth.login'))
 
-@auth.route('/user_pref', methods=['GET', 'POST'])
-def user_pref():
-    if request.method == 'POST':
-        return redirect(url_for('views.home'))
-    return render_template("user_pref.html", user=current_user)
+# @auth.route('/user_pref', methods=['GET', 'POST'])
+# def user_pref():
+#     if request.method == 'POST':
+#         return redirect(url_for('views.home'))
+#     return render_template("user_pref.html", user=current_user)
 
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
@@ -42,6 +42,11 @@ def sign_up():
         first_name = request.form.get('firstName')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
+        min_wave_height = request.form.get('min_wave_height')
+        max_wave_height = request.form.get('max_wave_height')
+        max_wind_mph = request.form.get('max_wind_mph')
+        min_water_temp = request.form.get('min_water_temp')
+
 
         user = User.query.filter_by(email=email).first()
         if user:
@@ -55,10 +60,11 @@ def sign_up():
         elif len(password1) < 7:
             flash('Password must be at least 7 characters.', category='error')
         else:
-            new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method='sha256'))
+            new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method='sha256'), min_wave_height=min_wave_height, max_wave_height=max_wave_height, max_wind_mph=max_wind_mph, min_water_temp=min_water_temp)
+            print(f"New User Data: {new_user.__dict__}")
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
             flash('Account created!', category='success')
-            return redirect(url_for('auth.user_pref'))
+            return redirect(url_for('views.home'))
     return render_template("sign_up.html", user=current_user)
