@@ -3,7 +3,7 @@ import requests
 import math
 #------------------------------ Scraping for Surf-Forecast.com---------------------------------------#
 def scrape_surf_forecast_water_temp():
-    print("--------------- Data for Surf-Forecast.com -----------------")
+    # print("--------------- Data for Surf-Forecast.com -----------------")
     # Define the URL for the website that has conditions for North Orange County beaches
     url = "https://www.surf-forecast.com/breaks/Huntington-Pier/forecasts/latest/six_day"
 
@@ -18,7 +18,7 @@ def scrape_surf_forecast_water_temp():
     water_temp_celsius = float(water_temp)
     water_temp_farenheight = (water_temp_celsius) * 1.8 + 32
     temp = math.ceil(water_temp_farenheight)
-    print("Water temp: ", temp)
+    # print("Water temp: ", temp)
     return temp
 
 #scrape_surf_forecast_water_temp()
@@ -42,8 +42,8 @@ def scrape_surf_forecast_wave_height():
     pm_wave_height = float(pm_wave_height)
     pm_wave_height *= 3.3
     pm_wave_height = math.ceil(pm_wave_height)
-    print(f"AM Wave Height: {am_wave_height}")
-    print(f"PM Wave Height: {pm_wave_height}")
+    # print(f"AM Wave Height: {am_wave_height}")
+    # print(f"PM Wave Height: {pm_wave_height}")
     return am_wave_height, pm_wave_height
 
 #scrape_surf_forecast_wave_height()
@@ -63,9 +63,9 @@ def scrape_surf_forecast_wind_mph():
     pm_wind_mph = int(pm_wind_mph)
     am_wind_mph -= 5
     pm_wind_mph -= 5
-    print(f"AM Wind (MPH): {am_wind_mph}")
-    print(f"PM Wind (MPH): {pm_wind_mph}")
-    print("")
+    # print(f"AM Wind (MPH): {am_wind_mph}")
+    # print(f"PM Wind (MPH): {pm_wind_mph}")
+    # print("")
     return am_wind_mph, pm_wind_mph
     
 #scrape_surf_forecast_wind_mph()
@@ -73,7 +73,7 @@ def scrape_surf_forecast_wind_mph():
 
 def scrape_swell_info_water_temp():
 
-    print("--------------- Data for SwellInfo.com -----------------")
+    # print("--------------- Data for SwellInfo.com -----------------")
     # Define the URL for the website that has conditions for North Orange County beaches
     url = "https://www.swellinfo.com/surf-forecast/orange-county-california-north"
 
@@ -86,7 +86,7 @@ def scrape_swell_info_water_temp():
     swell_info_water_temp = doc.find_all(class_="wx-icon-water-data")
     water_temp = swell_info_water_temp[0].get_text(strip=True)
     water_temp_number = ''.join(filter(str.isdigit, water_temp))
-    print("Water Temp: ", water_temp_number)
+    # print("Water Temp: ", water_temp_number)
     return water_temp_number
 
 #scrape_swell_info_water_temp()
@@ -117,8 +117,8 @@ def scrape_swell_info_wave_heights():
     pm_wave_height = '0' if pm_wave_height.lower() == 'flat' else pm_wave_height
     
     # Print the wave heights
-    print(f"AM Wave Height: {am_wave_height}")
-    print(f"PM Wave Height: {pm_wave_height}")
+    # print(f"AM Wave Height: {am_wave_height}")
+    # print(f"PM Wave Height: {pm_wave_height}")
     return am_wave_height, pm_wave_height
 
 # Call the function to scrape and print wave heights
@@ -157,8 +157,8 @@ def scrape_swell_info_wind_mph():
             wind_speeds.append(f"{times[i]}: {numeric_part} mph")
 
     # Print the list of wind speeds
-    print(wind_speeds)
-    print("")
+    # print(wind_speeds)
+    # print("")
     return wind_speeds
 
 # Call the function to perform the web scraping and display wind speeds
@@ -168,7 +168,7 @@ def scrape_swell_info_wind_mph():
 
 def scrape_surf_captain_water_temp():
 
-    print("--------------- Data for SurfCaptain.com -----------------")
+    # print("--------------- Data for SurfCaptain.com -----------------")
 
     url = "https://surfcaptain.com/forecast/huntington-beach-california"
     result = requests.get(url).text
@@ -177,7 +177,7 @@ def scrape_surf_captain_water_temp():
     water_temp = surf_captain_water_temp[3].get_text(strip=True)
     water_temp_number = ''.join(filter(str.isdigit, water_temp))
     water_temp_number = water_temp_number[:2]
-    print("Water Temp:", water_temp_number)
+    # print("Water Temp:", water_temp_number)
     return water_temp_number
 
 #scrape_surf_captain_water_temp()
@@ -197,8 +197,8 @@ def scrape_surf_captain_wave_height():
     am_wave_height = sum(am_wave_height) / len(am_wave_height)
     pm_wave_height = [int(height) for height in pm_wave_height]
     pm_wave_height = sum(pm_wave_height) / len(pm_wave_height)
-    print(f"AM Wave Height: {am_wave_height}")
-    print(f"PM Wave Height: {pm_wave_height}")
+    # print(f"AM Wave Height: {am_wave_height}")
+    # print(f"PM Wave Height: {pm_wave_height}")
     return am_wave_height, pm_wave_height
 
 #scrape_surf_captain_wave_height()
@@ -225,21 +225,22 @@ def scrape_surf_captain_wind_mph():
 
 def average_wind(am_surf_captain, pm_surf_captain, am_swell_info, pm_swell_info, am_surf_forecast, pm_surf_forecast):
     # AM Wind Average Calculation
-    print("------------------- Average Conditions----------------------")
+    # print("------------------- Average Conditions----------------------")
     numeric_part = am_swell_info.replace(' mph', '').split(': ')[-1]
     am_swell_info = float(numeric_part)
     am_surf_captain = float(am_surf_captain)
     am_surf_forecast = float(am_surf_forecast)
     am_average = math.ceil((am_surf_captain + am_swell_info + am_surf_forecast) / 3)
-    print("Average AM Winds: ", am_average, "MPH")
+    # print("Average AM Winds: ", am_average, "MPH")
     # PM Wind Average Calculation
     numeric_part = pm_swell_info.replace(' mph', '').split(': ')[-1]
     pm_swell_info = float(numeric_part)
     pm_surf_captain = float(pm_surf_captain)
     pm_surf_forecast = float(pm_surf_forecast)
     pm_average = math.ceil((pm_swell_info + pm_surf_captain + pm_surf_forecast) / 3)
-    print("Average PM Winds: ", pm_average, "MPH")
-    print("")
+    return am_average, pm_average
+    # print("Average PM Winds: ", pm_average, "MPH")
+    # print("")
     
 
 def average_wave_height(am_swell_info, pm_swell_info, am_surf_forecast, pm_surf_forecast, am_surf_captain, pm_surf_captain):
@@ -247,12 +248,13 @@ def average_wave_height(am_swell_info, pm_swell_info, am_surf_forecast, pm_surf_
     am_surf_captain = float(am_surf_captain)
     am_surf_forecast = float(am_surf_forecast)
     am_average = math.ceil((am_swell_info + am_surf_captain + am_surf_forecast) / 3)
-    print("Average AM Wave Height: ", am_average)
+    # print("Average AM Wave Height: ", am_average)
     pm_swell_info = float(pm_swell_info)
     pm_surf_captain = float(pm_surf_captain)
     pm_surf_forecast = float(pm_surf_forecast)
     pm_average = math.ceil((pm_swell_info + pm_surf_captain + pm_surf_forecast) / 3)
-    print("Average AM Wave Height: ", pm_average)
+    # print("Average AM Wave Height: ", pm_average)
+    return am_average, pm_average
 
 
 def average_water_temp(swell_info, surf_forecast, surf_captain):
@@ -260,8 +262,9 @@ def average_water_temp(swell_info, surf_forecast, surf_captain):
     surf_forecast = float(surf_forecast)
     surf_captain = float(surf_captain)
     average = math.ceil((swell_info + surf_captain + surf_forecast) / 3)
-    print("Average Water Temp: ", average)
-    print("")
+    # print("Average Water Temp: ", average)
+    # print("")
+    return average
 
 def main():
     # Wind Conditions #
