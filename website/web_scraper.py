@@ -66,6 +66,7 @@ def average_wind(am_surf_captain, pm_surf_captain, am_surf_forecast, pm_surf_for
     print("Average AM Winds: ", am_average, "MPH")
     print("Average PM Winds: ", pm_average, "MPH")
     print("")
+    return am_average, pm_average
 
 def average_wave_height(am_surf_forecast, pm_surf_forecast, am_surf_captain, pm_surf_captain):
     am_average = math.ceil((am_surf_captain + am_surf_forecast) / 2)
@@ -73,26 +74,39 @@ def average_wave_height(am_surf_forecast, pm_surf_forecast, am_surf_captain, pm_
     print("Average AM Wave Height: ", am_average)
     print("Average PM Wave Height: ", pm_average)
     print("")
+    return am_average, pm_average
 
 def average_water_temp(surf_forecast, surf_captain):
     average = math.ceil((float(surf_captain) + float(surf_forecast)) / 2)
     print("Average Water Temp: ", average)
+    return average
 
-def main():
+def get_scraped_data():
     # Wind Conditions #
     am_wind_speed_surf_captain, pm_wind_speed_surf_captain = scrape_surf_captain_wind_mph()
     am_wind_speed_surf_forecast, pm_wind_speed_surf_forecast = scrape_surf_forecast_wind_mph()
-    average_wind(am_wind_speed_surf_captain, pm_wind_speed_surf_captain, am_wind_speed_surf_forecast, pm_wind_speed_surf_forecast)
+    am_wind, pm_wind = average_wind(am_wind_speed_surf_captain, pm_wind_speed_surf_captain, am_wind_speed_surf_forecast, pm_wind_speed_surf_forecast)
 
     # Wave Height Conditions #
     am_wave_height_surf_forecast, pm_wave_height_surf_forecast = scrape_surf_forecast_wave_height()
     am_wave_height_surf_captain, pm_wave_height_surf_captain = scrape_surf_captain_wave_height()
-    average_wave_height(am_wave_height_surf_forecast, pm_wave_height_surf_forecast, am_wave_height_surf_captain, pm_wave_height_surf_captain)
+    am_wave, pm_wave = average_wave_height(am_wave_height_surf_forecast, pm_wave_height_surf_forecast, am_wave_height_surf_captain, pm_wave_height_surf_captain)
 
     # Water Temp Conditions
     water_temp_surf_forecast = scrape_surf_forecast_water_temp()
     water_temp_surf_captain = scrape_surf_captain_water_temp()
-    average_water_temp(water_temp_surf_forecast, water_temp_surf_captain)
+    water_temp = average_water_temp(water_temp_surf_forecast, water_temp_surf_captain)
+
+    scraped_data = {
+        "am_wind": am_wind,
+        "pm_wind": pm_wind,
+        "am_wave": am_wave,
+        "pm_wave": pm_wave,
+        "water_temp": water_temp,
+    }
+
+    return scraped_data
 
 if __name__ == "__main__":
-    main()
+   scraped_data = get_scraped_data()
+   print(scraped_data)
