@@ -34,10 +34,10 @@ def create_app():
     # Import and register blueprints for different parts of the application
     from.views import views
     from.auth import auth
-    from.surfEmail import email
+    from.surfEmail import surfEmail
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
-    app.register_blueprint(email, url_prefix='/')
+    app.register_blueprint(surfEmail, url_prefix='/')
 
     # Import the User model from the models module
     from .models import User 
