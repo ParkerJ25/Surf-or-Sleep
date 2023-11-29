@@ -1,28 +1,23 @@
 import smtplib
-from flask import Blueprint, current_app
-from website.models import User
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from .web_scraper import get_scraped_data
+from website.models import User
+from website.web_scraper import get_scraped_data
 
-surfEmail = Blueprint('surfEmail', __name__)
-
-@surfEmail.route('/')
 def send_emails():
-    # Get the Flask app instance
-    app = current_app
+    from website import create_app  # Import inside the function to avoid circular import
+    app = create_app()
 
     # Replace 'your_email@gmail.com' and 'your_password' with your email credentials
-    sender_email = 'parkerstephenson00@gmail.com'
-    password = 'ahgp vnbn mvlz cdju'
-
-    # Set up the email server
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
-    server.login(sender_email, password)
-
-    # Manually push an application context
     with app.app_context():
+        sender_email = 'parkerstephenson00@gmail.com'
+        password = 'ahgp vnbn mvlz cdju'
+
+        # Set up the email server
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(sender_email, password)
+
         # Get scraped data
         scraped_data = get_scraped_data()
 
@@ -45,10 +40,9 @@ def send_emails():
         for email in all_user_emails:
             send_email(server, email, 'Surf Conditions Update', email_body)
 
-    # Quit the server
-    server.quit()
+        # Quit the server
+        server.quit()
 
-    return "Emails Sent!"
 
 def send_email(server, recipient_email, subject, body):
     # Create the email message
@@ -60,4 +54,3 @@ def send_email(server, recipient_email, subject, body):
 
     # Send the email
     server.send_message(msg)
-send_emails()

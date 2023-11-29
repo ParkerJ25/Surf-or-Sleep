@@ -1,5 +1,6 @@
 # Import necessary modules and classes
 from flask import Flask
+from flask_apscheduler import APScheduler
 from flask_sqlalchemy import SQLAlchemy
 from os import path 
 from flask_login import LoginManager
@@ -14,9 +15,20 @@ DB_NAME = "database.db"
 def create_app():
     app = Flask(__name__)  # Create a Flask application instance (__name__ represents the current file)
 
+    scheduler = APScheduler()
+    scheduler.init_app(app)
+
+    # Add other schedulers if needed
+    from surfEmail import send_emails as surf_send_emails  # Rename to avoid confusion
+    scheduler.add_job(id="send_emails", func=surf_send_emails, trigger="interval", minutes=1)
+    
+    # Start the scheduler
+    scheduler.start()
+
     # Set Flask application configurations
     app.config['SECRET_KEY'] = 'parkerj25'  # Set the secret key for session security
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'  # Set the URI for the SQLite database
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'  # Set the mail server for Flask-Mail
     app.config['MAIL_PORT'] = 587  # Set the mail server port for Flask-Mail
     app.config['MAIL_USE_TLS'] = True  # Use TLS for Flask-Mail
@@ -34,10 +46,10 @@ def create_app():
     # Import and register blueprints for different parts of the application
     from.views import views
     from.auth import auth
-    from.surfEmail import surfEmail
+    #from.surfEmail import surfEmail
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
-    app.register_blueprint(surfEmail, url_prefix='/')
+    #app.register_blueprint(surfEmail, url_prefix='/')
 
     # Import the User model from the models module
     from .models import User 

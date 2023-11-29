@@ -39,16 +39,29 @@ def scrape_surf_captain_water_temp():
     return water_temp_number
 
 def scrape_surf_captain_wave_height():
+    # ... (existing code)
     wave_height_data = send_request_and_parse(SURF_CAPTAIN_URL, "hourly-surf clean")
-    am_wave_height = wave_height_data[0].get_text(strip=True)
-    pm_wave_height = wave_height_data[1].get_text(strip=True)
-    pm_wave_height = ' '.join(filter(str.isdigit, pm_wave_height))
-    am_wave_height = ' '.join(filter(str.isdigit, am_wave_height))
-    am_wave_height = [int(height) for height in am_wave_height]
-    am_wave_height = sum(am_wave_height) / len(am_wave_height)
-    pm_wave_height = [int(height) for height in pm_wave_height]
-    pm_wave_height = sum(pm_wave_height) / len(pm_wave_height)
-    return am_wave_height, pm_wave_height
+    # Extract numerical values from strings and handle invalid literals
+    try:
+        am_wave_height = wave_height_data[0].get_text(strip=True)
+        pm_wave_height = wave_height_data[1].get_text(strip=True)
+
+        am_wave_height = [int(height) for height in am_wave_height if height.isdigit()]
+        pm_wave_height = [int(height) for height in pm_wave_height if height.isdigit()]
+
+        # Calculate average wave heights
+        am_wave_height_avg = sum(am_wave_height) / len(am_wave_height) if am_wave_height else 0
+        pm_wave_height_avg = sum(pm_wave_height) / len(pm_wave_height) if pm_wave_height else 0
+
+    except ValueError as e:
+        print(f"Error converting wave height to integer: {e}")
+        # Handle the error, for example, by setting the height to a default value
+        am_wave_height_avg = 0
+        pm_wave_height_avg = 0
+
+    # ... (continue with the rest of your code)
+    return am_wave_height_avg, pm_wave_height_avg
+
 
 def scrape_surf_captain_wind_mph():
     wind_mph_data = send_request_and_parse(SURF_CAPTAIN_URL, "hourly-wind-spd")
