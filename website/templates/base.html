@@ -15,27 +15,55 @@
       crossorigin="anonymous"
     />
 
+    <style>
+      .navbar-dark .navbar-nav .nav-link {
+        color: white; /* Change text color */
+      }
+
+      .navbar-dark .navbar-toggler-icon {
+        background-color: white; /* Change hamburger icon color */
+      }
+
+      .navbar-dark .navbar-toggler {
+        border: 1px solid white; /* Change hamburger icon border color */
+      }
+
+      .navbar-brand {
+        margin-right: 0; /* Remove default margin */
+      }
+
+      .navbar-nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .navbar-nav .nav-item {
+        flex: 1;
+        text-align: center;
+      }
+    </style>
+
     <title>{% block title %}Home{% endblock %}</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbar"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbar">
-        <div class="navbar-nav">
-          {% if user.is_authenticated %}
-          <a class="nav-item nav-link" id="home" href="/">Home</a>
-          <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
-          {% else %}
-          <a class="nav-item nav-link" id="login" href="/login">Login</a>
-          <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
-          {% endif %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbar">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" id="home" href="/">Home</a>
+            <a class="nav-item nav-link" id="about" href="/about">About</a>
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" height="50">
+            <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+            <a class="nav-item nav-link" id="contact-us" href="/contact-us">Contact Us</a>
+          </div>
         </div>
       </div>
     </nav>
@@ -75,17 +103,17 @@
       crossorigin="anonymous"
     ></script>
 
-{% block javascript %}
+    {% block javascript %}
     <script type="text/javascript">
       function deleteNote(noteId) {
-  fetch("/delete-note", {
-    method: "POST",
-    body: JSON.stringify({ noteId: noteId }),
-  }).then((_res) => {
-    window.location.href = "/";
-  });
-  }
-</script>
-{% endblock %}
+        fetch("/delete-note", {
+          method: "POST",
+          body: JSON.stringify({ noteId: noteId }),
+        }).then((_res) => {
+          window.location.href = "/";
+        });
+      }
+    </script>
+    {% endblock %}
   </body>
 </html>

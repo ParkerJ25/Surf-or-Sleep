@@ -1,0 +1,27 @@
+.page-title {
+    text-align: left;
+    margin-left: -300px; /* Adjust the value to your preference */
+    padding: 5px;
+    margin-top: 80px;
+    box-sizing: border-box;
+    font-weight: 700; /* Bold */
+    font-size: 4em;
+}
+
+
+
+.page-slogan {
+    text-align: left;
+    margin-left: -290px;
+    font-weight: 400; /* Regular */
+    font-size: 1.5em;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-image: url('../images/background.jpg'); /* Adjust the path based on your folder structure */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #ffffff; /* Set text color to white or any contrasting color */
+}
