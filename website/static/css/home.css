@@ -17,6 +17,29 @@
     font-size: 1.5em;
 }
 
+.page-list {
+    text-align: left;
+    margin-left: -290px;
+    font-weight: 400; /* Regular */
+    font-size: 1.2em;
+}
+
+.learn-more-button {
+    display: inline-block;
+    margin-left: -290px;
+    padding: 10px 20px; /* Adjust padding for the desired size */
+    text-decoration: none;
+    background-color: #ffffff; /* Use a suitable background color */
+    color: #000000; /* Text color */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.learn-more-button:hover {
+    background-color: #2980b9; /* Change background color on hover */
+    text-decoration: none; /* Remove underline on hover */
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-image: url('../images/background.jpg'); /* Adjust the path based on your folder structure */
@@ -25,3 +48,4 @@ body {
     background-repeat: no-repeat;
     color: #ffffff; /* Set text color to white or any contrasting color */
 }
+

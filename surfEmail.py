@@ -30,7 +30,6 @@ def send_emails():
 
         # Get all user emails
         all_user_emails = [user.email for user in User.query.all()]
-
         # Print all emails
         print("All User Emails:")
         for email in all_user_emails:

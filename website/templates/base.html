@@ -61,8 +61,8 @@
 
         <div class="collapse navbar-collapse" id="navbar">
           <div class="navbar-nav">
-            <a class="nav-item nav-link" id="home" href="/">Home</a>
-            <a class="nav-item nav-link" id="about" href="/about">About</a>
+            <a class="nav-item nav-link" id="home" href="{{ url_for('views.home') }}">Home</a>
+            <a class="nav-item nav-link" id="about" href="{{ url_for('views.about') }}">About</a>
             <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" height="50">
             <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
             <a class="nav-item nav-link" id="contact-us" href="/contact-us">Contact Us</a>

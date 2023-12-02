@@ -1,4 +1,6 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %}
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
 
 {% block content %}
 <!DOCTYPE html>
@@ -6,27 +8,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
     <title>Welcome to Surf or Sleep!</title>
 </head>
 <body>
 
-    <h1 class="page-title">Welcome to Surf or Sleep,</h1>
+    <div class="section" id="home">
+        <h1 class="page-title">Welcome to Surf or Sleep,</h1>
 
-    <p class="page-slogan">Helping you make one less decision each day</p>
+        <p class="page-slogan">Helping you make one less decision each day</p>
 
-    <!-- <p>Our objective is to help take the stress away from deciding if you should surf or sleep on any given day.</p>
-
-    <p>We know other surf sites are lacking in consistent and accurate conditions so to counteract that we aggregate conditions from multiple sites to gain a consensus on conditions for that day.</p>
-
-    <p>This is a beta version of our website and we have many new features on the way such as:</p>
-
-    <ul>
-        <li>Currently only have conditions for Huntington Beach but we are working on conditions for other Orange County breaks such as Churches, Doheny, and Newport Beach</li>
-        <li>Working on implementing an account tab that would allow you to change your personalized settings and preferences</li>
-    </ul> -->
-
+        <!-- "Learn More" button linking to the /about route -->
+        <a href="{{ url_for('views.about') }}" class="learn-more-button">Learn More</a>
+    </div>
 </body>
 </html>
-
 {% endblock %}
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>

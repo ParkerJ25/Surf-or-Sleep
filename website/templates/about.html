@@ -1,17 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>About Flask</title>
-  </head>
-  <body>
-    {% extends "template.html" %}
-    {% block content %}
-    <h1> About Flask </h1>
-    <p> Flask is a micro web framework written in Python.</p>
-    <p> Applications that use the Flask framework include Pinterest,
-      LinkedIn, and the community web page for Flask itself.</p>
-    
-    {% endblock %}
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+    <title>About Us</title>
+</head>
+<body>
+
+    <section class="about-section">
+        <div class="text-section">
+            <h2>Our Story</h2>
+            <p>I founded Surf or Sleep due to the frustrating inconsistencies in surf conditions reported by 
+              various websites. Learning to surf, I encountered conflicting data that didn't match the actual 
+              conditions when I hit the waves. Month after month, the struggle persisted. Determined to create 
+              a solution, Surf or Sleep was born. It's a platform that emerged from the need for reliable and 
+              consistent surf data, ensuring a better surfing experience for enthusiasts like me.</p>
+        </div>
+        <div class="image-section">
+            <img src="{{ url_for('static', filename='images/ourStory.jpg') }}" alt="Our Story Image">
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="image-section">
+            <img src="{{ url_for('static', filename='images/ourObjective.jpg') }}" alt="Our Objective Image">
+        </div>
+        <div class="text-section">
+            <h2>Our Objective</h2>
+            <p>When creating Surf or Sleep, I had three key objectives. First, I aimed to aggregate surf conditions 
+              from various sites, creating a consensus by averaging them out. Second, I wanted to provide a daily 
+              email to users at 6 am, empowering them to decide whether to surf or sleep based on the latest 
+              conditions. Lastly, I envisioned a personalized experience by considering each user's preferences 
+              and matching them with the daily surf conditions. This way, our daily emails offer 
+              tailored recommendations to Surf or Sleep.
+            </p>
+        </div>
+    </section>
+
+    <section class="about-section">
+      <div class="text-section">
+          <h2>Our Goals</h2>
+          <p>As the beta version of our website unfolds, we have ambitious goals set for its full development. 
+              By the end of 2024, our primary objectives include:</p>
+          <ul>
+              <li><strong>Expanded Surf Conditions:</strong> Extend surf condition coverage beyond Huntington Beach. 
+                  Anticipate updates for Newport Beach, Doheney, and Trestles to provide a comprehensive overview 
+                  of Orange County conditions.</li>
+              <li><strong>User Account Features:</strong> Introduce a dedicated account tab, empowering users to 
+                  personalize their site settings and adjust preferences as they progress in their surfing journey.</li>
+              <li><strong>UI Enhancements:</strong> Implement ongoing UI enhancements to ensure a consistently improved 
+                  user experience. Our commitment is to make regular updates, refining and optimizing the website interface 
+                  for seamless navigation.</li>
+          </ul>
+      </div>
+      <div class="image-section">
+          <img src="{{ url_for('static', filename='images/ourGoals.jpg') }}" alt="Our Goals Image">
+      </div>
+  </section>
+  
+</body>
 </html>
+{% endblock %}
