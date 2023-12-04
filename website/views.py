@@ -13,3 +13,7 @@ def home():
 @login_required
 def about():
     return render_template("about.html", user=current_user)
+
+@views.route('/sign_up')
+def sign_up():
+    return render_template("sign_up.html", user=current_user)
