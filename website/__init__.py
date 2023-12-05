@@ -20,7 +20,7 @@ def create_app():
 
     # Add other schedulers if needed
     from surfEmail import send_emails as surf_send_emails  # Rename to avoid confusion
-    scheduler.add_job(id="send_emails", func=surf_send_emails, trigger="cron", hour = 12, minute = 17)
+    scheduler.add_job(id="send_emails", func=surf_send_emails, trigger="cron", hour = 16, minute = 34)
     # Start the scheduler
     print("loaded scheduler")
     scheduler.start()

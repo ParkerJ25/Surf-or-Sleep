@@ -74,7 +74,7 @@ def format_email_body(condition_type, scraped_data):
     return f"""
         {conditions_dict[condition_type]} Today's am conditions of {scraped_data['am_wave']} ft waves, 
         a nice water temp of {scraped_data['water_temp']} degrees and winds of {scraped_data['am_wind']} mph 
-        are {'ideal for your preferences so get out there and go catch some waves' if condition_type == 'ideal' else 'not in line with your preferences so we suggest going back to bed and resting up for the next good surf!'} \n \n Best Regards, \n your boy P from Surf or Sleep
+        are {'ideal for your preferences' if condition_type == 'ideal' else 'not in line with your preferences so we suggest going back to bed and resting up for the next good surf!'}
     """
 
 def send_email(server, recipient_email, subject, body):
