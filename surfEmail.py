@@ -1,12 +1,15 @@
+# Import necessary modules
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from website.models import User
 from website.web_scraper import get_scraped_data
 
+# Constants for email scores
 IDEAL_SCORE = 3
 GOOD_SCORE = 2
 
+# Function to send surf condition emails to users
 def send_emails():
     from website import create_app
     app = create_app()  # Assuming create_app() is defined in your website module
@@ -38,6 +41,7 @@ def send_emails():
         # Quit the server
         server.quit()
 
+# Function to calculate the score based on scraped data and user preferences
 def calculate_score(scraped_data, user):
     score = 0
 
@@ -64,6 +68,7 @@ def calculate_score(scraped_data, user):
 
     return score
 
+# Function to format the email body based on surf conditions
 def format_email_body(condition_type, scraped_data):
     conditions_dict = {
         "ideal": "It's looking great out there!",
@@ -77,6 +82,7 @@ def format_email_body(condition_type, scraped_data):
         are {'ideal for your preferences so get out there and go catch some waves' if condition_type == 'ideal' else 'not in line with your preferences so we suggest going back to bed and resting up for the next good surf!'} \n \n Best Regards, \n your boy P from Surf or Sleep
     """
 
+# Function to send an email
 def send_email(server, recipient_email, subject, body):
     # Create the email message
     msg = MIMEMultipart()

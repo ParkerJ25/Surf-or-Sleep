@@ -1,11 +1,12 @@
+# Import the create_app function from the website package
 from website import create_app
+# Import the send_emails function from the surfEmail module
 from surfEmail import send_emails
 
+# Create the Flask app using the create_app function
 app = create_app()
 
+# Check if the script is being run directly
 if __name__ == '__main__':
+    # Run the Flask app in debug mode with reloader turned off
     app.run(debug=True, use_reloader=False)
-
-    # Start the APScheduler along with the Flask app
-    #from surfEmail cv cv import scheduler as surf_email_scheduler
-    #surf_email_scheduler.add_job(id="send_emails", func=send_emails, trigger="cron", hour = 19, minute = 1)

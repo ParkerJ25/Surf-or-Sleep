@@ -1,10 +1,10 @@
 .page-title {
     text-align: left;
-    margin-left: -300px; /* Adjust the value to your preference */
+    margin-left: -300px; 
     padding: 5px;
     margin-top: 80px;
     box-sizing: border-box;
-    font-weight: 700; /* Bold */
+    font-weight: 700; 
     font-size: 4em;
 }
 
@@ -13,39 +13,39 @@
 .page-slogan {
     text-align: left;
     margin-left: -290px;
-    font-weight: 400; /* Regular */
+    font-weight: 400; 
     font-size: 1.5em;
 }
 
 .page-list {
     text-align: left;
     margin-left: -290px;
-    font-weight: 400; /* Regular */
+    font-weight: 400; 
     font-size: 1.2em;
 }
 
 .learn-more-button {
     display: inline-block;
     margin-left: -290px;
-    padding: 10px 20px; /* Adjust padding for the desired size */
+    padding: 10px 20px; 
     text-decoration: none;
-    background-color: #ffffff; /* Use a suitable background color */
-    color: #000000; /* Text color */
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s ease; /* Smooth transition */
+    background-color: #ffffff; 
+    color: #000000; 
+    border-radius: 5px; 
+    transition: background-color 0.3s ease; 
 }
 
 .learn-more-button:hover {
-    background-color: #2980b9; /* Change background color on hover */
-    text-decoration: none; /* Remove underline on hover */
+    background-color: #2980b9; 
+    text-decoration: none; 
 }
 
 body {
     font-family: 'Inter', sans-serif;
-    background-image: url('../images/background.jpg'); /* Adjust the path based on your folder structure */
+    background-image: url('../images/background.jpg'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    color: #ffffff; /* Set text color to white or any contrasting color */
+    color: #ffffff; 
 }
 

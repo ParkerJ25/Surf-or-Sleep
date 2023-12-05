@@ -1,19 +1,23 @@
-from flask import Blueprint, render_template # Blueprint allows us to seerate our app out and allows us to have views defined in different files instead of all in the same file 
+# Import necessary modules
+from flask import Blueprint, render_template
 from flask_login import login_required, current_user
 
-views = Blueprint('views', __name__) # you dont need to name this the same name as your file but it keeps it simple. We defined the name of the Blueprint as 'views' which we also dont have to use the same name but again it makes it more simple
+# Create a Blueprint named 'views'
+views = Blueprint('views', __name__)
 
-
-@views.route('/') # whenever we go to the "/" page which is the homepage, the home function will run 
-@login_required
+# Define route for the homepage '/'
+@views.route('/')
+@login_required  # Require the user to be logged in to access this route
 def home():
     return render_template("home.html", user=current_user)
 
+# Define route for the 'about' page
 @views.route('/about')
-@login_required
+@login_required  # Require the user to be logged in to access this route
 def about():
     return render_template("about.html", user=current_user)
 
+# Define route for the 'sign_up' page
 @views.route('/sign_up')
 def sign_up():
     return render_template("sign_up.html", user=current_user)

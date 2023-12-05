@@ -17,22 +17,22 @@
 
     <style>
       .navbar-light .navbar-nav .nav-link {
-        color: black; /* Change text color */
-        text-decoration: none; /* Remove underline */
-        font-family: 'Inter', sans-serif; /* Set font to Inter */
-        font-size: 1.2rem; /* Increase font size 1.5x */
+        color: black; 
+        text-decoration: none; 
+        font-family: 'Inter', sans-serif; 
+        font-size: 1.2rem; 
       }
 
       .navbar-dark .navbar-toggler-icon {
-        background-color: white; /* Change hamburger icon color */
+        background-color: white; 
       }
 
       .navbar-dark .navbar-toggler {
-        border: 1px solid white; /* Change hamburger icon border color */
+        border: 1px solid white; 
       }
 
       .navbar-brand {
-        margin-right: 0; /* Remove default margin */
+        margin-right: 0; 
       }
 
       .navbar-nav {
@@ -105,18 +105,3 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-
-    {% block javascript %}
-    <script type="text/javascript">
-      function deleteNote(noteId) {
-        fetch("/delete-note", {
-          method: "POST",
-          body: JSON.stringify({ noteId: noteId }),
-        }).then((_res) => {
-          window.location.href = "/";
-        });
-      }
-    </script>
-    {% endblock %}
-  </body>
-</html>
