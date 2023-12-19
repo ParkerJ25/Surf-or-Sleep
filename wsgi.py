@@ -1,4 +1,5 @@
 # Import the create_app function from the website package
+import os
 from website import create_app
 # Import the send_emails function from the surfEmail module
 from surfEmail import send_emails
